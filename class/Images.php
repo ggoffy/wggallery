@@ -285,13 +285,13 @@ class Images extends \XoopsObject
     /**
      * @public function getFormSortImages
      * @param bool $adminarea
-     * @param bool $action
+     * @param string|null $action
      * @return \XoopsSimpleForm
      * @throws \Exception
      */
-    public function getFormSortImages(bool $action = false): \XoopsSimpleForm
+    public function getFormSortImages(?string $action = null): \XoopsSimpleForm
     {
-        if (!$action) {
+        if ($action === null || $action === '') {
             $action = $_SERVER['REQUEST_URI'];
         }
         // Get Theme Form

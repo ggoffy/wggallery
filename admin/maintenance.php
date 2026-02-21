@@ -869,7 +869,7 @@ switch ($op) {
                     $success[] = $row['img_name'];
                 }
             } else {
-                $errors[] = xoops_error("SQL Error: " . $xoopsDB->error());
+                $errors[] = "SQL Error: " . $xoopsDB->error();
             }
         } else {
             $errors[] = \_CO_WGGALLERY_THEREARENT_IMAGES;
@@ -916,6 +916,10 @@ switch ($op) {
             if ($result && is_object($result)) {
                 while ($row = $xoopsDB->fetchArray($result)) {
                     $imagesObj = $imagesHandler->get($row['img_id']);
+                    if (!$imagesObj) {
+                        $errors[] = \_AM_WGGALLERY_MAINTENANCE_ERROR_DELETE . $row['img_name'];
+                        continue;
+                    }
                     if ($imagesHandler->delete($imagesObj, true)) {
                         $success[] = \_AM_WGGALLERY_MAINTENANCE_SUCCESS_DELETE . $row['img_name'];
                     } else {
@@ -923,7 +927,7 @@ switch ($op) {
                     }
                 }
             } else {
-                $errors[] = xoops_error("SQL Error: " . $xoopsDB->error());
+                $errors[] = "SQL Error: " . $xoopsDB->error();
             }
         } else {
             $errors[] = \_CO_WGGALLERY_THEREARENT_IMAGES;
