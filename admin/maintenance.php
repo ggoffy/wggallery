@@ -869,8 +869,7 @@ switch ($op) {
                     $success[] = $row['img_name'];
                 }
             } else {
-                xoops_error("SQL Error: " . $xoopsDB->error());
-                die;
+                $errors[] = xoops_error("SQL Error: " . $xoopsDB->error());
             }
         } else {
             $errors[] = \_CO_WGGALLERY_THEREARENT_IMAGES;
@@ -924,8 +923,7 @@ switch ($op) {
                     }
                 }
             } else {
-                xoops_error("SQL Error: " . $xoopsDB->error());
-                die;
+                $errors[] = xoops_error("SQL Error: " . $xoopsDB->error());
             }
         } else {
             $errors[] = \_CO_WGGALLERY_THEREARENT_IMAGES;
@@ -1000,14 +998,6 @@ switch ($op) {
                         $sourcefile = \WGGALLERY_UPLOAD_IMAGE_PATH . '/large/' . $imagesAll[$i]->getVar('img_namelarge');
                     }
                     $imgExif = $imagesHandler->exifRead($sourcefile);
-
-                    // handle original date of file creation/modification
-                    $imageDateOrig = 0;
-                    if (!is_empty($imgExif)){
-                        // use original data from exif data of the image
-                        $imageDateOrig = $imgExif['DateTimeOriginal'];
-                    }
-                    $imagesObj->setVar('img_dateorig', $imageDateOrig);
                     $imagesObj->setVar('img_exif', \json_encode($imgExif));
                     if ($imagesHandler->insert($imagesObj, true)) {
                         $success[] = \_AM_WGGALLERY_MAINTENANCE_READ_EXIF_SUCCESS . ': ' . $image['img_id'];

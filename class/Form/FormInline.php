@@ -22,7 +22,7 @@ namespace XoopsModules\Wggallery\Form;
 
 use XoopsSimpleForm;
 
-\defined('\XOOPS_ROOT_PATH') || exit('Restricted access');
+\defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
  * base class

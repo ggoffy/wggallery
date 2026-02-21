@@ -109,12 +109,14 @@ if ($imgId > 0 && 0 === $albId) {
 
 $permAlbumEdit = false;
 $albName       = '';
-$albSubmitter  = '';
-$albumsObj     = $albumsHandler->get($albId);
-if (isset($albumsObj) && \is_object($albumsObj)) {
-    $albName      = $albumsObj->getVar('alb_name');
-    $albSubmitter = (int)$albumsObj->getVar('alb_submitter');
-    $permAlbumEdit = $permissionsHandler->permAlbumEdit($albId, $albSubmitter);
+$albSubmitter  = 0;
+if ($albId > 0) {
+    $albumsObj = $albumsHandler->get($albId);
+    if (isset($albumsObj) && \is_object($albumsObj)) {
+        $albName      = $albumsObj->getVar('alb_name');
+        $albSubmitter = (int)$albumsObj->getVar('alb_submitter');
+        $permAlbumEdit = $permissionsHandler->permAlbumEdit($albId, $albSubmitter);
+    }
 }
 
 // Breadcrumbs
@@ -242,10 +244,11 @@ switch ($op) {
         $imagesObj->setVar('img_ip', $_SERVER['REMOTE_ADDR']);
         // Insert Data
         if ($imagesHandler->insert($imagesObj)) {
+            $newImgId = $imgId > 0 ? $imgId : $imagesObj->getNewInsertedIdImages();
             // send notifications
             $tags = [];
             $tags['IMAGE_NAME'] = $img_name;
-            $tags['IMAGE_URL'] = \XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . "/images.php?op=show&img_id=$imgId&amp;alb_id=$albId";
+            $tags['IMAGE_URL'] = \XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . "/images.php?op=show&img_id=$newImgId&amp;alb_id=$albId";
             $tags['ALBUM_URL'] = \XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . "/albums.php?op=show&alb_id=$albId&amp;alb_pid=$imgAlbPid";
             $notificationHandler = \xoops_getHandler('notification');
 
@@ -259,11 +262,10 @@ switch ($op) {
             }
 
             //handle tags for module TAG
-            $newImgId = $imgId > 0 ? $imgId : $imagesObj->getNewInsertedIdImages();
             $imagesHandler->handleTagsForTagmodule($imgTags, $newImgId, $imgAlbId);
 
             if ('manage' === $redir_op) {
-                \redirect_header('images.php?op=manage&amp;alb_id=' . $imgAlbId . '&amp;alb_pid=' . $imgAlbPid . '#image_' . $imgId, 2, \_CO_WGGALLERY_FORM_OK);
+                \redirect_header('images.php?op=manage&amp;alb_id=' . $imgAlbId . '&amp;alb_pid=' . $imgAlbPid . '#image_' . $newImgId, 2, \_CO_WGGALLERY_FORM_OK);
             } else {
                 \redirect_header('images.php?op=list&amp;alb_id=' . $imgAlbId . '&amp;alb_pid=' . $imgAlbPid, 2, \_CO_WGGALLERY_FORM_OK);
             }

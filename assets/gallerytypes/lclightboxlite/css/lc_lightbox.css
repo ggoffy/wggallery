@@ -276,7 +276,7 @@
     transform: translateZ(0);
 }
 .lcl_image_elem:before {
-    //content: "";
+    /*content: "";*/
     position: absolute;
     z-index: 10;
     top: 0;
@@ -1390,7 +1390,7 @@
 }
 #lcl_wrap:not(.lcl_on_mobile) #lcl_thumbs_nav.lcl_tn_has_arr span {
 	display: inline-block !important;
-    transition: opaacity .2s ease;
+    transition: opacity .2s ease;
 }
 .lcl_on_mobile .lcl_tn_prev,
 .lcl_on_mobile .lcl_tn_next {
