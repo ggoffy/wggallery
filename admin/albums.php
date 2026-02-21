@@ -104,7 +104,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         // Get Form
         $albumsObj = $albumsHandler->create();
-        $form      = $albumsObj->getFormAlbums(false, true);
+        $form      = $albumsObj->getFormAlbums(true);
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
 
         break;
@@ -191,7 +191,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
         // Get Form
         $albumsObj = $albumsHandler->get($albId);
-        $form      = $albumsObj->getFormAlbums(false, true);
+        $form      = $albumsObj->getFormAlbums(true);
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
 
         break;
