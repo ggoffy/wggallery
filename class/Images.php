@@ -291,12 +291,9 @@ class Images extends \XoopsObject
      */
     public function getFormSortImages(bool $action = false): \XoopsSimpleForm
     {
-        $helper = \XoopsModules\Wggallery\Helper::getInstance();
         if (!$action) {
             $action = $_SERVER['REQUEST_URI'];
         }
-        // Title
-        $title = $this->isNew() ? \_CO_WGGALLERY_IMAGE_ADD : \_CO_WGGALLERY_IMAGE_EDIT;
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsModules\Wggallery\Form\FormInline('', 'formSort', $action, 'post', true);
