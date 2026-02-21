@@ -179,7 +179,7 @@ switch ($op) {
         }
         // Get Form
         $GLOBALS['xoopsTpl']->assign('error', $albumsObj->getHtmlErrors());
-        $form = $albumsObj->getFormAlbums();
+        $form = $albumsObj->getFormAlbums(true);
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
 
         break;
