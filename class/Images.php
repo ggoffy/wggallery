@@ -87,14 +87,15 @@ class Images extends \XoopsObject
     /**
      * @public function getFormImages
      * @param bool $adminarea
-     * @param bool $action
+     * @param string|null $action
      * @return \XoopsThemeForm
      * @throws \Exception
      */
-    public function getFormImages(bool $adminarea = false, bool $action = false): \XoopsThemeForm
+    public function getFormImages(bool $adminarea = false, ?string $action = null): \XoopsThemeForm
     {
         $helper = \XoopsModules\Wggallery\Helper::getInstance();
-        if (!$action) {
+
+        if ($action === null || $action === '') {
             $action = $_SERVER['REQUEST_URI'];
         }
         // Title
@@ -284,7 +285,6 @@ class Images extends \XoopsObject
 
     /**
      * @public function getFormSortImages
-     * @param bool $adminarea
      * @param string|null $action
      * @return \XoopsSimpleForm
      * @throws \Exception
