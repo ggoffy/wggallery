@@ -1,7 +1,7 @@
 <!-- Header -->
 <{include file='db:wggallery_admin_header.tpl'}>
 <{if $watermarks_list|default:''}>
-	<table class='table table-bordered'>
+	<table class='outer'>
         <thead>
             <tr class="head">
                 <th class="center"><{$smarty.const._CO_WGGALLERY_WATERMARK_ID}></th>

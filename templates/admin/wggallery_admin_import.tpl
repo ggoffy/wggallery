@@ -24,7 +24,7 @@
 <{/if}>
 
 <{if $import_modules|default:''}>
-    <table class='table table-bordered'>
+    <table class='outer'>
         <thead>
             <tr class='head'>
                 <th class='center' style='width:40%'><{$smarty.const._AM_WGGALLERY_IMPORT_SUPPORT}></th>

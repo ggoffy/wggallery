@@ -12,7 +12,7 @@
 <{/if}>
 <{if $filesCount|default:0 > 0}>
     <h3><{$smarty.const._AM_WGGALLERY_BATCH_LIST}></h3>
-    <table class='table table-bordered'>
+    <table class='outer'>
         <thead>
             <tr class='head'>
                 <th class='center'>&nbsp;</th>

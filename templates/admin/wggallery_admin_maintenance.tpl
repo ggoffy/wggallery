@@ -11,7 +11,7 @@
 </style>
 
 <{if $system_check|default:''}>
-	<table class='table table-bordered'>
+	<table class='outer'>
 		<thead>
 			<tr class='head'>
 				<th class='center' style='width:50%'><{$smarty.const._AM_WGGALLERY_MAINTENANCE_CHECK_SYSTEM}></th>
@@ -38,7 +38,7 @@
 	<p><a class='btn pull-right' href='maintenance.php?op=list' title='<{$smarty.const._CO_WGGALLERY_BACK}>'><{$smarty.const._CO_WGGALLERY_BACK}></a></p>
 	<br><br>
 <{else}>
-    <table class='table table-bordered'>
+    <table class='outer'>
         <thead>
             <tr class='head'>
                 <th class='center' style='width:10%'><{$smarty.const._AM_WGGALLERY_MAINTENANCE_TYP}></th>

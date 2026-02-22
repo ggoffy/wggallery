@@ -1,7 +1,7 @@
 <!-- Header -->
 <{include file='db:wggallery_admin_header.tpl'}>
 <{if $gallerytypes_list|default:''}>
-	<table class='table table-bordered'>
+	<table class='outer'>
 		<thead>
 			<tr class="head">
 				<th class="center"><{$smarty.const._AM_WGGALLERY_GT_AT_ID}></th>

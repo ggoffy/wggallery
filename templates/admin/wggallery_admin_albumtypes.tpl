@@ -2,7 +2,7 @@
 <{include file='db:wggallery_admin_header.tpl'}>
 <{if $albumtypes_list|default:''}>
 	<h3 class=""><{$smarty.const._AM_WGGALLERY_OPTION_AT_SETINFO}></h3>
-	<table class='table table-bordered'>
+	<table class='outer'>
 		<thead>
 			<tr class="head">
 				<th class="center"><{$smarty.const._AM_WGGALLERY_GT_AT_ID}></th>

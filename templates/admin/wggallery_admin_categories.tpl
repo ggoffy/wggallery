@@ -7,7 +7,7 @@
 	<div class='errorMsg'><strong><{$error}></strong></div>
 <{/if}>
 <{if $categories_list|default:''}>
-        <table class='table table-bordered' >
+        <table class='outer' >
             <thead>
                 <tr class='head'>
                     <th class='center'>&nbsp;</th>

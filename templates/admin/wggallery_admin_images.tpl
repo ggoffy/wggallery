@@ -8,7 +8,7 @@
 <{/if}>
 <{if $images_list|default:''}>
     <{if $images_approve|default:''}>
-        <table class='table table-bordered'>
+        <table class='outer'>
             <thead>
                 <tr class='head'>
                     <th class='center'><{$smarty.const._CO_WGGALLERY_ALBUM}></th>
