@@ -131,6 +131,7 @@ if ('' !== $albName) {
 $xoBreadcrumbs[] = ['title' => \_CO_WGGALLERY_IMAGES];
 
 if (0 === $albId) {
+    $albumsObj = $albumsHandler->create();
     $albumsObj->start = $start;
     $albumsObj->limit = $limit;
     $form             = $albumsObj->getFormUploadToAlbum();
@@ -330,24 +331,25 @@ switch ($op) {
         }
         break;
     case 'manage':
-        $GLOBALS['xoTheme']->addScript('browse.php?Frameworks/jquery/jquery.js');
-        $GLOBALS['xoTheme']->addScript(\WGGALLERY_URL . '/assets/js/jquery-ui.min.js');
-        $GLOBALS['xoTheme']->addScript(\WGGALLERY_URL . '/assets/js/sortable-images.js');
-        $GLOBALS['xoTheme']->addScript(\WGGALLERY_URL . '/assets/js/jquery.mjs.nestedSortable.js');
-        $GLOBALS['xoTheme']->addStylesheet(\WGGALLERY_URL . '/assets/css/nestedsortable.css');
-        if (!$permAlbumEdit) {
-            \redirect_header('images.php', 3, _NOPERM);
-        }
-
-        $GLOBALS['xoopsTpl']->assign('alb_name', $albName);
-        $GLOBALS['xoopsTpl']->assign('alb_id', $albId);
-        $GLOBALS['xoopsTpl']->assign('alb_pid', $albPid);
-        $GLOBALS['xoopsTpl']->assign('ref', $ref);
-        $GLOBALS['xoopsTpl']->assign('start', $start);
-        $GLOBALS['xoopsTpl']->assign('limit', $limit);
-        $GLOBALS['xoopsTpl']->assign('img_submitter', $imgSubm);
-
         if ($albId > 0) {
+            $GLOBALS['xoTheme']->addScript(\WGGALLERY_URL . '/assets/js/jquery-1.9.1.min.js');
+            $GLOBALS['xoTheme']->addScript(\WGGALLERY_URL . '/assets/js/jquery-ui.min.js');
+            $GLOBALS['xoTheme']->addScript(\WGGALLERY_URL . '/assets/js/sortable-images.js');
+            $GLOBALS['xoTheme']->addScript(\WGGALLERY_URL . '/assets/js/jquery.mjs.nestedSortable.js');
+            $GLOBALS['xoTheme']->addStylesheet(\WGGALLERY_URL . '/assets/css/nestedsortable.css');
+            if (!$permAlbumEdit) {
+                \redirect_header('index.php', 3, _NOPERM);
+            }
+
+            $GLOBALS['xoopsTpl']->assign('alb_name', $albName);
+            $GLOBALS['xoopsTpl']->assign('alb_id', $albId);
+            $GLOBALS['xoopsTpl']->assign('alb_pid', $albPid);
+            $GLOBALS['xoopsTpl']->assign('ref', $ref);
+            $GLOBALS['xoopsTpl']->assign('start', $start);
+            $GLOBALS['xoopsTpl']->assign('limit', $limit);
+            $GLOBALS['xoopsTpl']->assign('img_submitter', $imgSubm);
+
+
             $crImages = new \CriteriaCompo();
             $crImages->add(new \Criteria('img_albid', $albId));
             $crImages->setSort('img_weight ASC, img_date');
