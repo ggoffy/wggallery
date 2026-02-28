@@ -70,7 +70,7 @@
             <{/if}>
         </table>
     <{else}>
-        <table class='table table-bordered'>
+        <table class='outer'>
             <thead>
                 <tr class='head'>
                     <th class='center'><{$smarty.const._CO_WGGALLERY_IMAGE_ID}></th>
